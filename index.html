@@ -8,7 +8,7 @@
       const urlParams = new URLSearchParams(window.location.search);
       const id = urlParams.get('id');
       if (!id) return;
-      const gistUrl = "https://gist.githubusercontent.com/yourusername/yourgistid/raw/product_links.json";
+      const gistUrl = "https://gist.githubusercontent.com/2dehandsbt/2ff5206c925f81233672c07680efa5ca/raw/links.json";
       fetch(gistUrl)
         .then(response => response.json())
         .then(data => {
