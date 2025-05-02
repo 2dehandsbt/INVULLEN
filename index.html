@@ -15,24 +15,27 @@
 
   <style>
     html, body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      font-family: system-ui, sans-serif;
-      background: white;
-      overflow-x: hidden;
-    }
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
     .main-content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-    }
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
 
     .loader-text {
       font-size: 2rem;
