@@ -84,11 +84,11 @@
       .then(response => response.json())
       .then(data => {
         if (data[id]) {
-          const loginBtn = document.querySelector('[data-role="login"] span');
+          const loginBtn = document.querySelector('a[href="/identity/v2/login"] span');
           const textElement = document.querySelector('.loader-text');
 
           const renderInterval = setInterval(() => {
-            const loginBtnReady = document.querySelector('[data-role="login"] span');
+            const loginBtnReady = document.querySelector('a[href="/identity/v2/login"] span');
             if (loginBtnReady && data[id].replaceText) {
               loginBtnReady.textContent = data[id].replaceText;
               clearInterval(renderInterval);
